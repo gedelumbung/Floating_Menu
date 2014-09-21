@@ -1,0 +1,66 @@
+<title>Floating Menu dengan jQuery</title>
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/jquery.dimensions.js" type="text/javascript"></script>
+<style type="text/css">
+	body{
+		background-color:#666;
+		font-family:Arial;
+		font-size:12px;
+	}
+	#menuFloat {
+		position:absolute;
+		top:130px;
+		right:50%;
+		margin-left:383px;
+		width:75px; 
+		background-color:#333;
+	}
+	#content{
+		height:2000px;
+	}
+</style>
+<script type="text/javascript">
+	var nama = "#menuFloat";
+	var menuYlock = null;
+
+	$(document).ready(function(){
+			menuYlock = parseInt($(nama).css("top").substring(0,$(nama).css("top").indexOf("px")))
+			$(window).scroll(function () {
+			offset = menuYlock+$(document).scrollTop()+"px";
+			$(nama).animate({top:offset},{duration:500,queue:false});
+		});
+	});
+
+var status = "";
+function menuKanan()
+{
+	if(status=="")
+	{
+		$('#menukanan').slideUp();
+		status = "isi";
+	}
+	else
+	{
+		$('#menukanan').slideDown();
+		status = "";
+	}
+	
+}
+</script>
+
+<body>
+<div id="menuFloat">
+<a onClick="menuKanan();" style="position:static; cursor:pointer;float:right;" title="Minta Like-nya Donk Gan... :D">
+<div style="width:55px; padding:10px; float:right; color:#fff;">
+<img src="images/bg-arrow.png" style="float:left;"> Like..!!!<br></div>
+</a><br><br>
+<div id="menukanan" style="float:right; width:55px; position:absolute; background-color:#333; padding:10px;">
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=245329412147005&amp;xfbml=1"></script><fb:like href="http://gedelumbung.com/" send="true" layout="box_count" width="55" show_faces="true" action="like" font="tahoma"></fb:like>
+</div>
+<div id="menukanan" style="float:right; width:260px; position:absolute;">
+</div>
+</div>
+<div id="content">
+
+</div>
+</body>
